@@ -9,6 +9,7 @@ import {
   Box,
 } from '@mui/material';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import EditIcon from '@mui/icons-material/Edit';
 import * as React from 'react';
 import { useState, useEffect, Fragment } from 'react';
 import { useTheme } from '@mui/material/styles';
@@ -119,7 +120,11 @@ const AddDialog = ({
           alignItems: 'center',
         }}
       >
-        <AddCircleIcon sx={{ marginRight: '5px' }} />
+         {
+         task ? 
+         (<EditIcon sx ={{marginRight: '5px'}} />) : (<AddCircleIcon sx={{marginRight: '5px'}}/>)
+         }
+         
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {task ? 'Edit' : 'Add'} Task
         </Typography>
@@ -187,11 +192,11 @@ const AddDialog = ({
       <DialogActions>
         <Button
           variant="contained"
-          startIcon={<AddCircleIcon />}
+          startIcon={task ? <EditIcon/> : <AddCircleIcon />}
           onClick={saveTask}
           disabled={!title || !description || existedTitle(title)}
         >
-          Add
+        {task ? 'Edit':'Add'}
         </Button>
         <Button
           variant="contained"
